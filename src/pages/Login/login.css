@@ -56,6 +56,13 @@
   font-size: 15px;
   border-radius: 8px;
 }
+.button-auth:disabled {
+  background: gray;
+  transform: scale(1.0) !important;
+  opacity: .3;
+  transition: ease 1s;
+  cursor: default;
+}
 .button-auth:hover {
   transform: scale(.9);
   box-shadow: 0 0 20px white;
