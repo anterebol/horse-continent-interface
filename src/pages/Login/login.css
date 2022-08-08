@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+.form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  text-align: center;
+}
+.login-title {
+  color: white;
+  font-family: 'Oswald', sans-serif !important;
+}
+.box-auth-input {
+  padding: 5px 10px;
+}
+.back-input {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  background: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: rgb(187, 186, 186);
+  opacity: .4;
+  border-radius: 10px;
+  box-shadow: 0 0 15px white;
+}
+.auth-input {
+  position: relative;
+  z-index: 2;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  top: -35px;
+  left: 20px;
+  color: white;
+  max-width: 100%;
+}
+.auth-input::placeholder {
+  color: white;
+}
+.button-auth {
+  position: relative;
+  background: orange;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  cursor: pointer;
+  box-shadow: 0 0 15px white;
+  transition: ease 1s;
+  font-size: 15px;
+  border-radius: 8px;
+}
+.button-auth:hover {
+  transform: scale(.9);
+  box-shadow: 0 0 20px white;
+  transition: ease 1s;
+  border-radius: 10px;
+}
