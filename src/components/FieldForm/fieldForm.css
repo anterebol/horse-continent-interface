@@ -1,0 +1,38 @@
+.box-input {
+  padding: 5px 10px;
+}
+.box-input:active > .back-input {
+  box-shadow: 0 0 40px 10px white;
+  transition: ease .4s;
+}
+.back-input {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  background: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: rgb(187, 186, 186);
+  opacity: .4;
+  border-radius: 10px;
+  box-shadow: 0 0 15px white;
+  transition: ease 2s;
+}
+.field-input {
+  position: relative;
+  z-index: 2;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  top: -35px;
+  left: 20px;
+  color: white;
+  max-width: 100%;
+}
+.field-input::placeholder {
+  color: white;
+}

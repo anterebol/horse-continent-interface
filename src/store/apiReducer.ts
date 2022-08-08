@@ -3,17 +3,22 @@ import { signIn } from './signApi/signApi';
 
 const apiState = {
   loaded: true,
-  autorized: localStorage.getItem('jwt') || '',
+  token: localStorage.getItem('token'),
+  events: [],
 };
 
 const apiReducer = createSlice({
   name: 'apiReducer',
   initialState: { ...apiState },
-  reducers: {},
+  reducers: {
+    addToken: (state) => {
+      state.token = localStorage.getItem('token') || '';
+    },
+  },
   extraReducers: {
     [signIn.fulfilled.type]: (state, action) => {
-      state.autorized = action.payload;
-      localStorage.setItem('jvt', action.payload);
+      state.token = action.payload;
+      localStorage.setItem('token', action.payload);
       state.loaded = true;
     },
     [signIn.pending.type]: (state) => {
@@ -26,3 +31,4 @@ const apiReducer = createSlice({
 });
 
 export default apiReducer.reducer;
+export const { addToken } = apiReducer.actions;

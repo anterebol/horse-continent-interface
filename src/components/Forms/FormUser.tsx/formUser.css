@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+.user-form {
+  /* text-align: center; */
+  display: flex;
+  flex-wrap: wrap;
+}
+.add-title {
+  padding: 10px 0;
+  font-size: 18px;
+  color: white;
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  font-family: 'Oswald', sans-serif !important;
+}
+.add-btn {
+  margin: 0 auto;
+  right: 30px;
+}
+.add-user {
+  width: 30%;
+  text-align: center;
+  right: 30px;
+}
+.add-user::placeholder {
+  text-align: center;
+}

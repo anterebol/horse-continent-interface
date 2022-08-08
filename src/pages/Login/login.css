@@ -11,61 +11,51 @@
   color: white;
   font-family: 'Oswald', sans-serif !important;
 }
-.box-auth-input {
-  padding: 5px 10px;
-}
-.back-input {
-  position: relative;
-  width: 100%;
-  z-index: 1;
-  background: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  background: rgb(187, 186, 186);
-  opacity: .4;
-  border-radius: 10px;
-  box-shadow: 0 0 15px white;
-}
-.auth-input {
-  position: relative;
-  z-index: 2;
-  background: none;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  top: -35px;
-  left: 20px;
-  color: white;
-  max-width: 100%;
-}
-.auth-input::placeholder {
-  color: white;
-}
-.button-auth {
+.activate-button {
   position: relative;
   background: orange;
   border: none;
   color: white;
   padding: 8px 15px;
+  width: 130px;
   cursor: pointer;
+  margin: 4px 0;
   box-shadow: 0 0 15px white;
   transition: ease 1s;
   font-size: 15px;
   border-radius: 8px;
+  transition: ease 1s;
 }
-.button-auth:disabled {
+.activate-button:disabled {
   background: gray;
   transform: scale(1.0) !important;
   opacity: .3;
   transition: ease 1s;
   cursor: default;
 }
-.button-auth:hover {
+.activate-button:active {
+  box-shadow: 0 0 30px white;
+  transition: ease .3s;
+}
+.activate-button:hover {
   transform: scale(.9);
-  box-shadow: 0 0 20px white;
+  box-shadow: 0 0 20px 10px white;
   transition: ease 1s;
   border-radius: 10px;
+}
+.develop-link {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 17px;
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: white;
+  transition: ease 1s;
+}
+.develop-link:hover {
+  color: rgb(158, 154, 154);
+  opacity: .6;
+  transition: ease 1s;
+  text-decoration-color: rgb(158, 154, 154);
 }
