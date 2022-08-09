@@ -47,6 +47,7 @@ export const FieldForm = (props: {
             maxLength={fieldMax}
             minLength={fieldMin}
             autoComplete="new-password"
+            required={true}
             onChange={(e) => {
               func(e.target.value);
             }}

@@ -4,6 +4,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+.user-form.add-user {
+  justify-content: center;
+}
 .add-title {
   padding: 10px 0;
   font-size: 18px;
@@ -29,15 +32,6 @@
   width: 30%;
   text-align: center;
   right: 30px;
-}
-@media (max-width: 600px) {
-  .box-input.add-user {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .box-with-naming {
-    width: 100%;
-  }
 }
 .box-input.add-user::placeholder {
   text-align: center;
@@ -65,4 +59,15 @@ option {
 }
 .select-back {
   width: 180px;
+}
+@media (max-width: 600px) {
+  .box-input.add-user {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    margin: 0 10px;
+  }
+  .box-with-naming {
+    width: 100%;
+  }
 }

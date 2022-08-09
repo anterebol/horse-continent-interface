@@ -3,36 +3,42 @@ import { ACTIVATE_BUTTON, BACK_INPUT, BOX_INPUT, FIELD_INPUT } from '../../../co
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { signIn } from '../../../store/signApi/signApi';
 import { FieldForm } from '../../FieldForm/FieldForm';
+import { ParagraphUser } from '../../UserItem/ParagraphUser/ParagraphUser';
 import './formUser.css';
 
 const pUser = 'p-user';
 export const FormUser = (props: {
   clsInput: string[];
-  clsSelect: string[];
-  clsButton: string[];
+  idFor: string;
   login?: string;
   password?: string;
   name?: string;
   role?: string;
-  btnName: string;
   naming?: boolean;
 }) => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.apiReducer);
-  const { clsButton, clsInput, clsSelect, btnName, naming } = props;
+  const { clsInput, naming, role, idFor } = props;
   const [login, setLogin] = useState(props.login || '');
   const [name, setName] = useState(props.name || '');
   const [password, setPassword] = useState(props.password || '');
   const submit = async (e) => {
     e.preventDefault();
-    await dispatch(signIn({ login, password }));
-    e.target.reset();
-    setLogin('');
-    setPassword('');
+    if (!!name && !!login && !password) {
+    }
+    // await dispatch(signIn({ login, password }));
+    console.log(name, login, password);
+    if (!naming) {
+      e.target.reset();
+      setLogin('');
+      setPassword('');
+      setName('');
+      setPassword('');
+    }
   };
   return (
     <>
-      <form className="user-form" onSubmit={submit}>
+      <form id={idFor} className={['user-form', clsInput].join(' ')} onSubmit={submit}>
         <FieldForm
           placeholder="Имя"
           type="text"
@@ -63,6 +69,7 @@ export const FormUser = (props: {
           value={password}
           naming={naming}
         />
+        {naming ? <ParagraphUser option={'Role'} value={role || ''} /> : null}
         {/* <div className={[BOX_INPUT].join(' ')}>
           <div className={clsSelect.join(' ')}></div>
           <select defaultValue="role" className={[FIELD_INPUT, 'role-select'].join(' ')}>

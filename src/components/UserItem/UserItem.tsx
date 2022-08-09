@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { UserType } from '../../types/types';
 import { FieldForm } from '../FieldForm/FieldForm';
 import { FormUser } from '../Forms/FormUser.tsx/FormUser';
-import { BtnUser } from './ParagraphUser/ButtonUser/BtnUser';
-import { ParagraphUser } from './ParagraphUser/ParagraphUser';
+import { BtnUser } from './ButtonUser/BtnUser';
 import './userItem.css';
-const inputCls = 'user-input';
 
 export const UserItem = (props: { user: UserType }) => {
   const [isInput, setIsInput] = useState(false);
@@ -17,19 +15,23 @@ export const UserItem = (props: { user: UserType }) => {
         <div className="user-prop">
           <FormUser
             clsInput={['user-input']}
-            clsSelect={[]}
-            clsButton={[]}
             name={name}
             password={password}
             login={login}
             role={role}
-            btnName={'Изменить'}
             naming={true}
+            idFor={'user-item-id'}
           />
         </div>
         <div className="user-buttons">
-          <BtnUser cls={['btn-user', 'del']} value="Удалить" func={() => {}} />
-          <BtnUser cls={['btn-user', 'update']} value="Изменить" func={() => {}} />
+          <BtnUser cls={['del']} disabled={role === 'owner'} value="Удалить" func={() => {}} />
+          <BtnUser
+            type="submit"
+            idFor={'user-item-id'}
+            cls={['update']}
+            value="Изменить"
+            func={() => {}}
+          />
         </div>
       </div>
     </li>

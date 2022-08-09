@@ -9,6 +9,13 @@ const apiState = {
     {
       id: 1,
       name: 'Aleks',
+      role: 'owner',
+      password: 'password',
+      login: 'login',
+    },
+    {
+      id: 2,
+      name: 'Aleks',
       role: 'admin',
       password: 'password',
       login: 'login',
