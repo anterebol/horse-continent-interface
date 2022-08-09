@@ -1,17 +1,28 @@
-import { useEffect, useState } from 'react';
-import { ACTIVATE_BUTTON } from '../../../constants/classes';
+import { useState } from 'react';
+import { ACTIVATE_BUTTON, BACK_INPUT, BOX_INPUT, FIELD_INPUT } from '../../../constants/classes';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { signIn } from '../../../store/signApi/signApi';
 import { FieldForm } from '../../FieldForm/FieldForm';
-import { isValid } from '../../../utils/validation';
 import './formUser.css';
 
-export const FormUser = () => {
+const pUser = 'p-user';
+export const FormUser = (props: {
+  clsInput: string[];
+  clsSelect: string[];
+  clsButton: string[];
+  login?: string;
+  password?: string;
+  name?: string;
+  role?: string;
+  btnName: string;
+  naming?: boolean;
+}) => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.apiReducer);
-  const [login, setLogin] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const { clsButton, clsInput, clsSelect, btnName, naming } = props;
+  const [login, setLogin] = useState(props.login || '');
+  const [name, setName] = useState(props.name || '');
+  const [password, setPassword] = useState(props.password || '');
   const submit = async (e) => {
     e.preventDefault();
     await dispatch(signIn({ login, password }));
@@ -21,38 +32,57 @@ export const FormUser = () => {
   };
   return (
     <>
-      <h1 className="add-title">Создать пользователя</h1>
       <form className="user-form" onSubmit={submit}>
         <FieldForm
           placeholder="Имя"
           type="text"
           func={setName}
-          cls={['add-user']}
+          cls={clsInput}
           fieldMax={10}
           fieldMin={4}
+          value={name}
+          naming={naming}
         />
         <FieldForm
-          placeholder="Email"
-          type="email"
+          placeholder="Логин"
+          type="text"
           func={setLogin}
-          cls={['add-user']}
+          cls={clsInput}
           fieldMax={15}
           fieldMin={7}
+          value={login}
+          naming={naming}
         />
         <FieldForm
-          placeholder="Password"
+          placeholder="Пароль"
           type="password"
           func={setPassword}
-          cls={['add-user']}
+          cls={clsInput}
           fieldMax={10}
           fieldMin={4}
+          value={password}
+          naming={naming}
         />
-        <button
-          className={[ACTIVATE_BUTTON, 'add-btn'].join(' ')}
+        {/* <div className={[BOX_INPUT].join(' ')}>
+          <div className={clsSelect.join(' ')}></div>
+          <select defaultValue="role" className={[FIELD_INPUT, 'role-select'].join(' ')}>
+            <option selected={true} disabled>
+              Role
+            </option>
+            <option value="admin" unselectable="off" title="Администратор">
+              Admin
+            </option>
+            <option title="Владелец" value="owner">
+              Owner
+            </option>
+          </select>
+        </div> */}
+        {/* <button
+          className={clsButton.join(' ')}
           disabled={login === '' || password === '' || name === ''}
         >
-          Создать
-        </button>
+          {btnName}
+        </button> */}
       </form>
     </>
   );

@@ -1,0 +1,28 @@
+.btn-user {
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 5px white;
+  transition: ease 1s;
+  margin: 5px;
+}
+.btn-user:hover {
+  /* transform: scale(.95); */
+  box-shadow: 0 0 5px black;
+  transition: ease 1s;
+}
+.btn-user:active {
+  transform: scale(.9);
+  box-shadow: 0 0 10px black;
+  transition: ease .3s;
+}
+.del {
+  background: -webkit-radial-gradient(50%, rgb(248, 161, 161), rgb(237, 50, 50));
+}
+.update {
+  background: -webkit-radial-gradient(50%, rgb(231, 196, 108), rgb(237, 178, 50));
+}

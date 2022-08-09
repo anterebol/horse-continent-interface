@@ -28,15 +28,15 @@ export const Login = () => {
           <form className="form" onSubmit={submit}>
             <h1 className="login-title">Вход</h1>
             <FieldForm
-              placeholder="Email"
-              type="email"
+              placeholder="Логин"
+              type="text"
               func={setLogin}
               cls={['sign-field']}
               fieldMax={15}
               fieldMin={7}
             />
             <FieldForm
-              placeholder="Password"
+              placeholder="Пароль"
               type="password"
               func={setPassword}
               cls={['sign-field']}

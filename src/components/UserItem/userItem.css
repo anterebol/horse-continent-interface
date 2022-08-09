@@ -1,0 +1,48 @@
+.user-box {
+  /* background: #ffffff; */
+  width: 80%;
+  margin: 0 auto;
+  list-style: none;
+  background: none;
+  position: relative;
+  padding: 8px 10px;
+}
+.user-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(233, 230, 230);
+  opacity: .6;
+  border-radius: 14px;
+}
+.user-intarface {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* height: 100px; */
+}
+.user-prop {
+  margin: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.user-buttons {
+  justify-content: right;
+  text-align: right;
+}
+.box-input.user-input {
+  height: 30px;
+  width: 100%;
+  /* padding: 0 5px; */
+}
+.field-input.user-input {
+  /* width: 30%; */
+  left: 10px;
+  top: -25px;
+}
+.back-input.user-input {
+  height: 30px;
+}

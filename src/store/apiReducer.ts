@@ -5,6 +5,15 @@ const apiState = {
   loaded: true,
   token: localStorage.getItem('token'),
   events: [],
+  users: [
+    {
+      id: 1,
+      name: 'Aleks',
+      role: 'admin',
+      password: 'password',
+      login: 'login',
+    },
+  ],
 };
 
 const apiReducer = createSlice({

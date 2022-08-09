@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 .user-form {
-  /* text-align: center; */
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -14,15 +14,55 @@
   position: relative;
   font-family: 'Oswald', sans-serif !important;
 }
-.add-btn {
-  margin: 0 auto;
-  right: 30px;
+.p-user {
+  margin: auto 0; 
+  font-weight: bold; 
+  opacity: .8; 
 }
-.add-user {
+.add-btn {
+  margin-left: 30px;
+  /* right: 30px; */
+  /* height: 50px; */
+}
+.box-input.add-user {
+  /* margin: 0 auto; */
   width: 30%;
   text-align: center;
   right: 30px;
 }
-.add-user::placeholder {
+@media (max-width: 600px) {
+  .box-input.add-user {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .box-with-naming {
+    width: 100%;
+  }
+}
+.box-input.add-user::placeholder {
   text-align: center;
+}
+.role-select {
+  width: 150px;
+  color: white;
+  left: 15px;
+  /* position: relative;
+  top: -40px;
+  background: ; */
+}
+option {
+  background: rgb(215, 214, 214);
+  opacity: .4;
+
+  border-radius: 10px !important;
+  border: none !important;
+  color: rgb(14, 14, 14);
+}
+.option {
+  position: relative;
+  z-index: 2;
+  background: orange !;
+}
+.select-back {
+  width: 180px;
 }
