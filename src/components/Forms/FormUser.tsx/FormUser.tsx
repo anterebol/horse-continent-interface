@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { ACTIVATE_BUTTON, BACK_INPUT, BOX_INPUT, FIELD_INPUT } from '../../../constants/classes';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { signIn } from '../../../store/signApi/signApi';
+import { openModal, sendReqest } from '../../../store/apiReducer';
 import { FieldForm } from '../../FieldForm/FieldForm';
 import { ParagraphUser } from '../../UserItem/ParagraphUser/ParagraphUser';
 import './formUser.css';
 
-const pUser = 'p-user';
 export const FormUser = (props: {
   clsInput: string[];
   idFor: string;
@@ -15,19 +13,22 @@ export const FormUser = (props: {
   name?: string;
   role?: string;
   naming?: boolean;
+  submit?: any;
 }) => {
   const dispatch = useAppDispatch();
-  const { token } = useAppSelector((state) => state.apiReducer);
-  const { clsInput, naming, role, idFor } = props;
+  const { token, modal } = useAppSelector((state) => state.apiReducer);
+  const { clsInput, naming, role, idFor, submit } = props;
   const [login, setLogin] = useState(props.login || '');
   const [name, setName] = useState(props.name || '');
   const [password, setPassword] = useState(props.password || '');
-  const submit = async (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    if (!!name && !!login && !password) {
+    if (modal && !submit) {
+      dispatch(sendReqest({ reqBody: { login, name, password } }));
+    } else if (submit) {
+      await dispatch(submit({ login, name, password }));
     }
-    // await dispatch(signIn({ login, password }));
-    console.log(name, login, password);
+
     if (!naming) {
       e.target.reset();
       setLogin('');
@@ -38,7 +39,7 @@ export const FormUser = (props: {
   };
   return (
     <>
-      <form id={idFor} className={['user-form', clsInput].join(' ')} onSubmit={submit}>
+      <form id={idFor} className={['user-form', clsInput].join(' ')} onSubmit={submitForm}>
         <FieldForm
           placeholder="Имя"
           type="text"
@@ -55,13 +56,13 @@ export const FormUser = (props: {
           func={setLogin}
           cls={clsInput}
           fieldMax={15}
-          fieldMin={7}
+          fieldMin={5}
           value={login}
           naming={naming}
         />
         <FieldForm
           placeholder="Пароль"
-          type="password"
+          type="text"
           func={setPassword}
           cls={clsInput}
           fieldMax={10}

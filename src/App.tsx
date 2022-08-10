@@ -8,7 +8,7 @@ import { useAppDispatch } from './hooks/hooks';
 import { addToken } from './store/apiReducer';
 import { useEffect } from 'react';
 import { Main } from './pages/Main/Main';
-import { SIGN_IN_PATH, MAIN_PATH, SERVICE_PATH, REVIEW_PATH, USER_PATH } from './constants/pathes';
+import { MAIN_PATH, SERVICE_PATH, REVIEW_PATH, USER_PATH, AUTH_PATH } from './constants/pathes';
 import { Users } from './pages/Users/Users';
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
   }, []);
   return (
     <Routes>
-      <Route path={SIGN_IN_PATH} element={<Login />} />
+      <Route path={AUTH_PATH} element={<Login />} />
       <Route
         path={MAIN_PATH}
         element={

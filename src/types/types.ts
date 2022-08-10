@@ -3,7 +3,7 @@ export type AuthType = {
   password: string;
 };
 export type UserType = {
-  id: number;
+  id: string;
   name: string;
   role: string;
   password: string;

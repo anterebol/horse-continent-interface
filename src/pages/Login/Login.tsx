@@ -15,8 +15,8 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const submit = async (e) => {
     e.preventDefault();
-    await dispatch(signIn({ login, password }));
     e.target.reset();
+    await dispatch(signIn({ login, password }));
     setLogin('');
     setPassword('');
   };
@@ -25,7 +25,7 @@ export const Login = () => {
     <>
       {!token ? (
         <>
-          <form className="form" onSubmit={submit}>
+          <form className="form login" onSubmit={submit}>
             <h1 className="login-title">Вход</h1>
             <FieldForm
               placeholder="Логин"
@@ -33,14 +33,14 @@ export const Login = () => {
               func={setLogin}
               cls={['sign-field']}
               fieldMax={15}
-              fieldMin={7}
+              fieldMin={5}
             />
             <FieldForm
               placeholder="Пароль"
               type="password"
               func={setPassword}
               cls={['sign-field']}
-              fieldMax={10}
+              fieldMax={15}
               fieldMin={4}
             />
             <button className={ACTIVATE_BUTTON} disabled={login === '' || password === ''}>

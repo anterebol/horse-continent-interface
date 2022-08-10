@@ -1,0 +1,35 @@
+.modal-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+}
+.modal-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  background: black;
+  opacity: .4;
+}
+.modal-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 100%; */
+  padding: 20px;
+  z-index: 5;
+  opacity: 1;
+  background: white;
+  text-align: center;
+  border-radius: 15px;
+}
+.modal-title {
+  font-size: 18px;
+  opacity: .6;
+}
