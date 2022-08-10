@@ -1,8 +1,9 @@
-import { UserItem } from '../UserItem/UserItem';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { UserItem } from './UserItem/UserItem';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import './listUsers.css';
 import { useEffect } from 'react';
-import { getUsers } from '../../store/userApi/userApi';
+import { getUsers } from '../../../store/userApi/userApi';
+import spinner from '../../../assets/spinner.gif';
 
 export const ListUsers = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +28,9 @@ export const ListUsers = () => {
               <UserItem key={user['id']} user={user} />
             ))}
         </ul>
-      ) : null}
+      ) : (
+        <img className="spinner" src={spinner} />
+      )}
     </>
   );
 };

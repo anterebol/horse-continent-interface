@@ -6,7 +6,7 @@ import { DEVELOP_PATH } from '../../constants/pathes';
 import { ACTIVATE_BUTTON } from '../../constants/classes';
 import './login.css';
 import { NavLink } from 'react-router-dom';
-import { FieldForm } from '../../components/FieldForm/FieldForm';
+import { FieldForm } from '../../components/Forms/FieldForm/FieldForm';
 
 export const Login = () => {
   const dispatch = useAppDispatch();

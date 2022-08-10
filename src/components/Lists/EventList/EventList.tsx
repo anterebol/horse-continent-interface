@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { EventItem } from '../ServiceItem/ServiceItem';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { EventItem } from './EventItem/EventItem';
 
 export const EventList = () => {
   const dispatch = useAppDispatch();

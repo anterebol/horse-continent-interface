@@ -1,10 +1,10 @@
-import { UserType } from '../../types/types';
-import { FormUser } from '../Forms/FormUser.tsx/FormUser';
-import { BtnUser } from './ButtonUser/BtnUser';
+import { UserType } from '../../../../types/types';
+import { FormUser } from '../../../Forms/FormUser.tsx/FormUser';
+import { Button } from '../../../Button/Button';
 import './userItem.css';
-import { useAppDispatch } from '../../hooks/hooks';
-import { addOperationId, openModal, sendReqest } from '../../store/apiReducer';
-import { delModal, updateModal } from '../../constants/modals';
+import { useAppDispatch } from '../../../../hooks/hooks';
+import { addOperationId, openModal } from '../../../../store/apiReducer';
+import { delModal, updateModal } from '../../../../constants/modals';
 
 export const UserItem = (props: { user: UserType }) => {
   const dispatch = useAppDispatch();
@@ -37,8 +37,8 @@ export const UserItem = (props: { user: UserType }) => {
           />
         </div>
         <div className="user-buttons">
-          <BtnUser cls={['del']} disabled={role === 'owner'} value="Удалить" func={removeUser} />
-          <BtnUser
+          <Button cls={['del']} disabled={role === 'owner'} value="Удалить" func={removeUser} />
+          <Button
             type="submit"
             idFor={`user-item-${id}`}
             cls={['update']}

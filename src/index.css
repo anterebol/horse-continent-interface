@@ -9,3 +9,14 @@ body {
   height: 100%;
   background: -webkit-linear-gradient(top, rgb(55, 191, 229), rgb(56, 222, 222));
 }
+body::-webkit-scrollbar {
+  width: 6px;               /* ширина scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: -webkit-linear-gradient(top, rgb(55, 191, 229), rgb(56, 222, 222));
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(170, 222, 238);    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+  /* border: 0px solid orange;  padding вокруг плашки */
+}

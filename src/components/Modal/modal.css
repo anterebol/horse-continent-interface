@@ -5,6 +5,16 @@
   bottom: 0;
   right: 0;
   z-index: 4;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  transition: var(visibility, opacity, overflow) ease 2s;
+}
+.modal-box.open {
+  visibility: visible;
+  opacity: 1;
+  overflow: visible;
+  transition: var(visibility, opacity, overflow) ease 2s;
 }
 .modal-back {
   position: absolute;
@@ -14,7 +24,16 @@
   right: 0;
   z-index: 3;
   background: black;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: var(visibility, opacity, overflow) ease 2s;
+}
+.modal-back.open {
+  visibility: visible;
   opacity: .4;
+  overflow: visible;
+  transition: var(visibility, opacity, overflow) ease 2s;
 }
 .modal-body {
   position: absolute;
@@ -22,7 +41,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   /* width: 100%; */
-  padding: 20px;
+  padding: 30px;
   z-index: 5;
   opacity: 1;
   background: white;
@@ -32,4 +51,12 @@
 .modal-title {
   font-size: 18px;
   opacity: .6;
+}
+.close {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
 }

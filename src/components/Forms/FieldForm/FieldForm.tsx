@@ -1,4 +1,4 @@
-import { BACK_INPUT, BOX_INPUT, FIELD_INPUT } from '../../constants/classes';
+import { BACK_INPUT, BOX_INPUT, FIELD_INPUT } from '../../../constants/classes';
 import './fieldForm.css';
 
 const pUser = 'p-user';

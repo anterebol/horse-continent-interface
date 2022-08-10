@@ -1,50 +1,64 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { FieldForm } from '../FieldForm/FieldForm';
-import { BtnUser } from '../UserItem/ButtonUser/BtnUser';
+import { FieldForm } from '../Forms/FieldForm/FieldForm';
+import { Button } from '../Button/Button';
 import { removeUser, updateUser } from '../../store/userApi/userApi';
 import './modal.css';
 import { delModal, updateModal } from '../../constants/modals';
-import { openModal } from '../../store/apiReducer';
+import { openModal, removeModal } from '../../store/apiReducer';
+import close from '../../assets/close.svg';
+import closeOrange from '../../assets/close-orange.svg';
 
 export const Modal = () => {
   const dispatch = useAppDispatch();
+  const [hovered, setHovered] = useState(false);
   const { modal, reqBody, userData, operationId } = useAppSelector((state) => state.apiReducer);
   const [pass, setPass] = useState('');
   const submit = async (e) => {
     e.preventDefault();
     if (modal === delModal) {
-      console.log('remove', {
-        id: operationId,
-        currentPassword: pass,
-        currentLogin: userData.login || '',
-      });
       await dispatch(
-        removeUser({ id: operationId, currentPassword: pass, currentLogin: userData.login || '' })
+        removeUser({
+          id: operationId,
+          currentPassword: pass,
+          currentLogin: userData.login || localStorage.getItem('login'),
+        })
       );
       dispatch(openModal(''));
     } else if (modal === updateModal) {
-      console.log('up', {
-        id: operationId,
-        ...reqBody,
-        currentPassword: pass,
-        currentLogin: userData.login || '',
-      });
       await dispatch(
         updateUser({
           id: operationId,
           ...reqBody,
           currentPassword: pass,
-          currentLogin: userData.login || '',
+          currentLogin: userData.login || localStorage.getItem('login'),
         })
       );
       dispatch(openModal(''));
     }
   };
+  const closeModal = () => {
+    dispatch(removeModal());
+  };
+
   return (
-    <div className="modal-box">
-      <div className="modal-back"></div>
-      <div className="modal-body">
+    <div className={['modal-box', modal ? 'open' : ''].join(' ')} onClick={closeModal}>
+      <div className={['modal-back', modal ? 'open' : ''].join(' ')}></div>
+      <div
+        className="modal-body"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <div className="close">
+          <img
+            src={!hovered ? close : closeOrange}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onClick={() => closeModal()}
+            alt=""
+          />
+        </div>
         <h2 className="modal-title">Введите пароль для подтверждения</h2>
         <form onSubmit={submit}>
           <FieldForm
@@ -55,7 +69,7 @@ export const Modal = () => {
             fieldMax={15}
           />
           {modal === 'delete-modal' ? (
-            <BtnUser
+            <Button
               type="submit"
               cls={['del']}
               disabled={pass.length < 4 || pass.length > 15 ? true : false}
@@ -63,7 +77,7 @@ export const Modal = () => {
               func={() => {}}
             />
           ) : (
-            <BtnUser
+            <Button
               type="submit"
               // idFor={'user-item-id'}
               disabled={pass.length < 4 || pass.length > 15 ? true : false}

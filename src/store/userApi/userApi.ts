@@ -32,7 +32,7 @@ export const getUsers = createAsyncThunk('get-users', async (action, { rejectWit
         Authorization: `Bearer ` + localStorage.getItem('token') || '',
       },
     }).then(async (res) => {
-      if (!res.ok) {
+      if (!res.ok && res.status === 401) {
         throw new Error(res.status.toString());
       } else {
         return await res.text().then((res) => JSON.parse(res));
@@ -53,9 +53,10 @@ export const removeUser = createAsyncThunk(
         headers: { ...headers, Authorization: `Bearer ` + localStorage.getItem('token') || '' },
         body: JSON.stringify(action),
       }).then(async (res) => {
-        if (!res.ok && res.status !== 401) {
-          console.log(res);
+        if (!res.ok && res.status === 401) {
           throw new Error(res.status.toString());
+        } else {
+          return { id: '' };
         }
       });
       return { id };
@@ -68,14 +69,14 @@ export const updateUser = createAsyncThunk(
   'update-user',
   async (action: any, { rejectWithValue }) => {
     const { id } = action;
-    console.log(action);
+    console.log(action, 'xs');
     try {
       const data = await fetch(createUrl(USER_URL, id), {
         method: PUT,
         headers: { ...headers, Authorization: `Bearer ` + localStorage.getItem('token') || '' },
         body: JSON.stringify(action),
       }).then(async (res) => {
-        if (!res.ok) {
+        if (!res.ok && res.status === 401) {
           throw new Error(res.status.toString());
         } else {
           return await res.text().then((res) => JSON.parse(res));

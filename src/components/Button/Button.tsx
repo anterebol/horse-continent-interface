@@ -1,5 +1,5 @@
-import './btnUser.css';
-export const BtnUser = (props: {
+import './btn.css';
+export const Button = (props: {
   value: string;
   cls: string[];
   func: () => void;

@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Login } from './pages/Login/Login';
 import { Reviews } from './pages/Reviews/Reviews';
-import { Service } from './pages/Service/Service';
+import { Events } from './pages/Events/Events';
 import { Private } from './hoc/Private';
 import { useAppDispatch } from './hooks/hooks';
 import { addToken } from './store/apiReducer';
@@ -31,7 +31,7 @@ const App = () => {
         path={SERVICE_PATH}
         element={
           <Private>
-            <Service />
+            <Events />
           </Private>
         }
       />

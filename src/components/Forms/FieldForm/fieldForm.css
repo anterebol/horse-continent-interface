@@ -9,6 +9,13 @@
   display: flex;
   width: 33%;
 }
+@media (max-width: 800px) {
+  .box-with-naming {
+    display: block;
+    width: 100%;
+    margin: auto;
+  }
+}
 .back-input {
   position: relative;
   width: 100%;
@@ -40,3 +47,4 @@
 .field-input::placeholder {
   color: white;
 }
+
