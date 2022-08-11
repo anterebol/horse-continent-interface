@@ -55,11 +55,16 @@ export const removeUser = createAsyncThunk(
       }).then(async (res) => {
         if (!res.ok && res.status === 401) {
           throw new Error(res.status.toString());
+        } else if (!res.ok) {
+          return;
         } else {
-          return { id: '' };
+          return 'deleted correctly';
         }
       });
-      return { id };
+      if (data) {
+        return { id };
+      }
+      return { id: '' };
     } catch (err) {
       return rejectWithValue(err);
     }
@@ -69,7 +74,6 @@ export const updateUser = createAsyncThunk(
   'update-user',
   async (action: any, { rejectWithValue }) => {
     const { id } = action;
-    console.log(action, 'xs');
     try {
       const data = await fetch(createUrl(USER_URL, id), {
         method: PUT,
@@ -78,11 +82,19 @@ export const updateUser = createAsyncThunk(
       }).then(async (res) => {
         if (!res.ok && res.status === 401) {
           throw new Error(res.status.toString());
-        } else {
+        } else if (res.ok) {
           return await res.text().then((res) => JSON.parse(res));
+        } else {
+          return;
         }
       });
-      return data;
+      if (data) {
+        // console.log(data);
+        return { ...data, status: 'ok' };
+      } else {
+        console.log(action);
+        return { id: action.id };
+      }
     } catch (err) {
       return rejectWithValue(err);
     }

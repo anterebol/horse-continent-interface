@@ -1,6 +1,6 @@
-import { BACK_P_CLS, BOX_P_CLS, P_CLS } from '../../../../constants/classes';
+import { BACK_P_CLS, BOX_P_CLS, P_CLS } from '../../constants/classes';
 import './p.css';
-export const ParagraphUser = (props: { option: string; value: string }) => {
+export const Paragraph = (props: { option: string; value: string }) => {
   const { option, value } = props;
   return (
     <div style={{ display: 'flex' }}>

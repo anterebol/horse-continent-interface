@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { sendReqest } from '../../../store/apiReducer';
 import { FieldForm } from '../FieldForm/FieldForm';
-import { ParagraphUser } from '../../Lists/ListUsers/ParagraphUser/ParagraphUser';
+import { Paragraph } from '../../Paragraph/Paragraph';
 import './formUser.css';
 
 export const FormUser = (props: {
@@ -70,7 +70,7 @@ export const FormUser = (props: {
           value={password}
           naming={naming}
         />
-        {naming ? <ParagraphUser option={'Role'} value={role || ''} /> : null}
+        {naming ? <Paragraph option={'Role'} value={role || ''} /> : null}
         {/* <div className={[BOX_INPUT].join(' ')}>
           <div className={clsSelect.join(' ')}></div>
           <select defaultValue="role" className={[FIELD_INPUT, 'role-select'].join(' ')}>

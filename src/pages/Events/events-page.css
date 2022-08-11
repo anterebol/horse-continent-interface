@@ -1,0 +1,14 @@
+.event-page {
+  position: relative;
+}
+.h2-event {
+  margin: 10px;
+  text-align: center;
+  color: white;
+}
+.create-button-box {
+  position: relative; 
+  text-align: right; 
+  top: -60px;
+  z-index: 4;
+}

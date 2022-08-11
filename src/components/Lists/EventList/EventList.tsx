@@ -1,14 +1,13 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppSelector } from '../../../hooks/hooks';
 import { EventItem } from './EventItem/EventItem';
 
 export const EventList = () => {
-  const dispatch = useAppDispatch();
   const { events } = useAppSelector((state) => state.apiReducer);
   return (
     <div>
       <ul>
         {events.map((item) => (
-          <EventItem key={item['id']} item={item} />
+          <EventItem key={item['id']} event={item} />
         ))}
       </ul>
     </div>

@@ -2,7 +2,7 @@ import './btn.css';
 export const Button = (props: {
   value: string;
   cls: string[];
-  func: () => void;
+  func: any;
   disabled?: boolean;
   idFor?: string;
   type?: string;

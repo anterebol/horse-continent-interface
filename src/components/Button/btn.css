@@ -36,3 +36,19 @@
   position: relative;
   right: 30px;
 }
+.back {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: -webkit-radial-gradient(50%, rgb(126, 223, 129), rgb(8, 141, 37));
+}
+.right-40 {
+  position: absolute;
+  right: 40px;
+  /* bottom: 50px; */
+}
+@media (max-width: 500px) {
+  .back {
+    position: static;
+  }
+}
