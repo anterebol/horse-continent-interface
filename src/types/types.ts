@@ -17,4 +17,5 @@ export type EventType = {
   visible: boolean;
   was: boolean;
   date: string;
+  order: number;
 };

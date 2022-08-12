@@ -65,12 +65,14 @@
 }
 .footer-event {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-left: 5px;
 }
 .event-buttons {
   /* position: absolute; */
   display: flex;
+  flex-wrap: wrap;
 }
 @media (max-width: 800px) {
   .event-interface {

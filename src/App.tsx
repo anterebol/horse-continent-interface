@@ -8,7 +8,7 @@ import { useAppDispatch } from './hooks/hooks';
 import { addToken } from './store/apiReducer';
 import { useEffect } from 'react';
 import { Main } from './pages/Main/Main';
-import { MAIN_PATH, SERVICE_PATH, REVIEW_PATH, USER_PATH, AUTH_PATH } from './constants/pathes';
+import { MAIN_PATH, EVENT_PATH, REVIEW_PATH, USER_PATH, AUTH_PATH } from './constants/pathes';
 import { Users } from './pages/Users/Users';
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
         }
       />
       <Route
-        path={SERVICE_PATH}
+        path={EVENT_PATH}
         element={
           <Private>
             <Events />

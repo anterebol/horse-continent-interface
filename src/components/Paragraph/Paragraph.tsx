@@ -3,7 +3,7 @@ import './p.css';
 export const Paragraph = (props: { option: string; value: string }) => {
   const { option, value } = props;
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       <span style={{ margin: 'auto 0' }}>{`${option}:`}</span>
       <div className={BOX_P_CLS} style={{ margin: 'auto 5px' }}>
         <div className={BACK_P_CLS}></div>

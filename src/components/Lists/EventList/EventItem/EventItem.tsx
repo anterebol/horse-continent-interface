@@ -11,6 +11,7 @@ import { useState } from 'react';
 export const EventItem = (props: { event: EventType }) => {
   const dispatch = useAppDispatch();
   const { name, description, id, visible, was, date } = props.event;
+  console.log({ name, description, id, visible, was, date });
   const img = props.event.img || camera;
   const [overflow, setOverflow] = useState(true);
   const removeEvent = () => {
@@ -33,9 +34,9 @@ export const EventItem = (props: { event: EventType }) => {
           <div className="box-info">
             <div className="main-info-event">
               <p className="header-event">{name}</p>
-              <p className="header-event">{date.toString()}</p>
+              <p className="header-event">{date}</p>
             </div>
-            <p className={['description-event', overflow ? 'hede' : ''].join(' ')}>{description}</p>
+            <p className={['description-event', overflow ? 'hide' : ''].join(' ')}>{description}</p>
 
             <div className="footer-event">
               <div className="box-short-info">

@@ -58,6 +58,8 @@
 }
 .field-input.add-event {
   padding-left: 20px;
+  width: 100%;
+  text-overflow:ellipsis;
 }
 .description-textarea::placeholder {
   color: white;

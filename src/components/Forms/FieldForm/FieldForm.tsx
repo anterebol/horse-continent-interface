@@ -12,8 +12,9 @@ export const FieldForm = (props: {
   cls?: string[];
   value?: string;
   naming?: boolean;
+  required?: boolean;
 }) => {
-  const { placeholder, type, func, fieldMin, fieldMax, value, naming } = props;
+  const { placeholder, type, func, fieldMin, fieldMax, value, naming, required } = props;
   const cls = props.cls || [];
   return (
     <>
@@ -47,7 +48,7 @@ export const FieldForm = (props: {
             maxLength={fieldMax}
             minLength={fieldMin}
             autoComplete="new-password"
-            required={true}
+            required={required === false ? required : true}
             onChange={(e) => {
               func(e.target.value);
             }}
