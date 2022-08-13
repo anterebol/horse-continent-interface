@@ -11,7 +11,6 @@ export const Users = () => {
   const navigate = useNavigate();
   return (
     <div style={{ paddingBottom: 30 }}>
-      {modal ? <Modal /> : null}
       <Button value={'Назад'} cls={['back']} func={() => navigate(-1)} />
       <h1 className="add-title">Создать пользователя</h1>
       <FormUser submit={addUser} idFor={'user-create'} clsInput={['add-user']} />

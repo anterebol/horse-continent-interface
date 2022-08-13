@@ -4,19 +4,19 @@ import { Button } from '../../../Button/Button';
 import './userItem.css';
 import { useAppDispatch } from '../../../../hooks/hooks';
 import { addOperationId, openModal } from '../../../../store/apiReducer';
-import { delModal, updateModal } from '../../../../constants/modals';
+import { DEL_USER_MODAL, UP_USER_MODAL } from '../../../../constants/modals';
 
 export const UserItem = (props: { user: UserType }) => {
   const dispatch = useAppDispatch();
   const { name, role, password, id, login } = props.user;
 
   const removeUser = () => {
-    dispatch(openModal(delModal));
+    dispatch(openModal(DEL_USER_MODAL));
     dispatch(addOperationId(id));
   };
   const updateUser = () => {
     console.log('x');
-    dispatch(openModal(updateModal));
+    dispatch(openModal(UP_USER_MODAL));
     dispatch(addOperationId(id));
   };
 

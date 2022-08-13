@@ -2,7 +2,7 @@ import './btn.css';
 export const Button = (props: {
   value: string;
   cls: string[];
-  func: any;
+  func?: any;
   disabled?: boolean;
   idFor?: string;
   type?: string;
@@ -14,7 +14,7 @@ export const Button = (props: {
       form={idFor}
       disabled={disabled}
       className={['btn-user', ...cls].join(' ')}
-      onClick={() => func()}
+      onClick={(e) => func(e)}
     >
       {value}
     </button>

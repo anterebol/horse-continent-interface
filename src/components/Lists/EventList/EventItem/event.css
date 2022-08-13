@@ -1,11 +1,13 @@
 .event-box {
   /* background: #ffffff; */
   width: 90%;
+  
   margin: 10px auto;
   list-style: none;
   background: none;
   position: relative;
-  padding: 8px 10px;
+  padding: 10px;
+  min-height: 250px;
   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 .event-back {
@@ -34,8 +36,9 @@
 }
 .box-event-img {
   margin: 5px;
-  width: 250px;
-  height: 180px;
+  max-width: 300px;
+  width: 100%;
+  max-height: 240px;
 }
 .event-img {
   width: 100%;
@@ -43,6 +46,7 @@
 }
 .main-info-event {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 5px;
   font-size: 18px;
@@ -50,7 +54,7 @@
 .description-event {
   overflow-y: scroll;
   margin-left: 5px; 
-  height: 100px;
+  height: 160px;
   margin-bottom: 5px;
 }
 .description-event::-webkit-scrollbar {
@@ -68,6 +72,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin-left: 5px;
+  text-align: center;
 }
 .event-buttons {
   /* position: absolute; */

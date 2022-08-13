@@ -1,4 +1,4 @@
-import { getEvents, addEvent } from './eventApi/eventApi';
+import { getEvents, addEvent, removeEvent, updateEvent } from './eventApi/eventApi';
 import { EventType, UserType } from './../types/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { signIn } from './signApi/signApi';
@@ -145,23 +145,57 @@ const apiReducer = createSlice({
       state.events = [...action.payload];
       state.loaded = true;
     },
-    [getEvents.pending.type]: (state, action) => {
+    [getEvents.pending.type]: (state) => {
       state.loaded = false;
     },
-    [getEvents.rejected.type]: (state, action) => {
+    [getEvents.rejected.type]: (state) => {
       state.token = '';
       removeStorage();
       state.loaded = true;
     },
     [addEvent.fulfilled.type]: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.events.push(action.payload);
       state.loaded = true;
     },
-    [addEvent.pending.type]: (state, action) => {
+    [addEvent.pending.type]: (state) => {
       state.loaded = false;
     },
-    [addEvent.rejected.type]: (state, action) => {
+    [addEvent.rejected.type]: (state) => {
+      state.token = '';
+      removeStorage();
+      state.loaded = true;
+    },
+    [updateEvent.fulfilled.type]: (state, action) => {
+      if (action.payload.id) {
+        const index = state.events.findIndex((event) => event.id === action.payload.id);
+        state.events[index] = { ...action.payload };
+      }
+      state.loaded = true;
+      state.operationId = '';
+      state.modal = '';
+    },
+    [updateEvent.pending.type]: (state) => {
+      state.loaded = false;
+    },
+    [updateEvent.rejected.type]: (state) => {
+      state.token = '';
+      removeStorage();
+      state.loaded = true;
+    },
+    [removeEvent.fulfilled.type]: (state, action) => {
+      if (action.payload.id) {
+        state.events.splice(
+          state.events.findIndex((event) => event.id === action.payload.id),
+          1
+        );
+      }
+      state.loaded = true;
+    },
+    [removeEvent.pending.type]: (state) => {
+      state.loaded = false;
+    },
+    [removeEvent.rejected.type]: (state) => {
       state.token = '';
       removeStorage();
       state.loaded = true;

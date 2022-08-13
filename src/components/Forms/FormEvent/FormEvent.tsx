@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 // import { sendReqest } from '../../../store/apiReducer';
 import { FieldForm } from '../FieldForm/FieldForm';
-import { sendReqest } from '../../../store/apiReducer';
+import { openModal, removeModal, sendReqest } from '../../../store/apiReducer';
+import { updateEvent } from '../../../store/eventApi/eventApi';
 
 export const FormEvent = (props: {
   clsInput: string[];
@@ -19,7 +20,7 @@ export const FormEvent = (props: {
   order?: number;
 }) => {
   const dispatch = useAppDispatch();
-  const { token, modal } = useAppSelector((state) => state.apiReducer);
+  const { token, modal, operationId } = useAppSelector((state) => state.apiReducer);
   const { clsInput, naming, idFor, submit } = props;
   const [img, setImg] = useState(props.img || '');
   const [name, setName] = useState(props.name || '');
@@ -27,13 +28,15 @@ export const FormEvent = (props: {
   const [was, setWas] = useState(props.was || false);
   const [visible, setVisible] = useState(props.visible || false);
   const [date, setDate] = useState(props.date || '');
-  const [order, setOrder] = useState(props.order || '');
-  console.log(date);
+  const [order, setOrder] = useState(props.order || 0);
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log('work');
     if (modal && !submit) {
-      dispatch(sendReqest({ reqBody: { name, img, description, was, visible } }));
+      dispatch(openModal(''));
+      await dispatch(
+        updateEvent({ name, img, description, was, visible, date, order, id: operationId })
+      );
+      dispatch(removeModal());
     } else if (submit) {
       await dispatch(submit({ name, img, description, was, visible, date }));
     }
@@ -54,14 +57,14 @@ export const FormEvent = (props: {
             placeholder="Название"
             type="text"
             func={setName}
-            cls={['add-event']}
+            cls={['add-event', ...clsInput]}
             fieldMax={50}
             fieldMin={0}
             value={name}
             naming={naming}
           />
           <label className="event-label">
-            <p className="p-event">Отметить как прошедшее</p>
+            <p className={['p-event', ...clsInput].join(' ')}>Отметить как прошедшее</p>
             <input
               onChange={() => {
                 setWas(!was);
@@ -72,7 +75,7 @@ export const FormEvent = (props: {
             />
           </label>
         </div>
-        <span className="datepicker-toggle">
+        <span className={['datepicker-toggle', ...clsInput].join(' ')}>
           <span className="datepicker-toggle-button"></span>
           <input
             type="date"
@@ -81,7 +84,7 @@ export const FormEvent = (props: {
             }}
             value={date}
             required={true}
-            className="datepicker-input"
+            className={['datepicker-input'].join(' ')}
           />
         </span>
         <div className="form-item-box">
@@ -89,15 +92,15 @@ export const FormEvent = (props: {
             placeholder="Ссылка на изображение"
             type="text"
             func={setImg}
-            cls={['add-event']}
+            cls={['add-event', ...clsInput]}
             fieldMax={1000}
             fieldMin={0}
             value={img}
             naming={naming}
             required={false}
           />
-          <label className="event-label">
-            <p className="p-event">Скрыть мероприятие</p>
+          <label className={['event-label', ...clsInput].join(' ')}>
+            <p className={['p-event', ...clsInput].join(' ')}>Скрыть мероприятие</p>
             <input
               className="checkbox-event"
               onChange={() => {
@@ -110,12 +113,13 @@ export const FormEvent = (props: {
         </div>
         <div className="form-item-box">
           <div className="box-textarea">
-            <div className="back-textarea"></div>
+            <div className={['back-textarea', ...clsInput].join(' ')}></div>
             <textarea
               placeholder="Описание"
               onChange={(e) => {
                 setDescription(e.target.value);
               }}
+              value={description}
               className="description-textarea"
             />
           </div>

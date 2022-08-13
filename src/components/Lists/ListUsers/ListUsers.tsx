@@ -4,6 +4,7 @@ import './listUsers.css';
 import { useEffect } from 'react';
 import { getUsers } from '../../../store/userApi/userApi';
 import spinner from '../../../assets/spinner.gif';
+import { Preloader } from '../../Preloader/Preloader';
 
 export const ListUsers = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ export const ListUsers = () => {
             ))}
         </ul>
       ) : (
-        <img className="spinner" src={spinner} />
+        <Preloader />
       )}
     </>
   );
