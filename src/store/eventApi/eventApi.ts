@@ -14,10 +14,9 @@ export const getEvents = createAsyncThunk('getEvents', async (action, { rejectWi
       if (!res.ok) {
         throw new Error(res.status.toString());
       } else {
-        return await res.text().then((res) => JSON.parse(res));
+        return await res.json();
       }
     });
-    console.log(data);
     return data;
   } catch (err) {
     return rejectWithValue(err);
@@ -33,7 +32,7 @@ export const addEvent = createAsyncThunk('addEvent', async (action: any, { rejec
       if (!res.ok) {
         throw new Error(res.status.toString());
       } else {
-        return await res.text().then((res) => JSON.parse(res));
+        return await res.json();
       }
     });
     return data;
@@ -68,7 +67,6 @@ export const updateEvent = createAsyncThunk(
   'update-event',
   async (action: EventType, { rejectWithValue }) => {
     const { id } = action;
-    console.log(action);
     try {
       const data = await fetch(createUrl(EVENT_URL, id), {
         method: PUT,
@@ -78,7 +76,7 @@ export const updateEvent = createAsyncThunk(
         if (!res.ok) {
           throw new Error(res.status.toString());
         } else {
-          return await res.text().then((res) => JSON.parse(res));
+          return await res.json();
         }
       });
       return data;
@@ -87,3 +85,26 @@ export const updateEvent = createAsyncThunk(
     }
   }
 );
+// export const chengeOrder = createAsyncThunk(
+//   'chenge-order',
+//   async (action: { id: string; order: string }, { rejectWithValue }) => {
+//     console.log(action);
+//     try {
+//       const data = await fetch(createUrl(EVENT_URL, 'order'), {
+//         method: POST,
+//         headers: headers,
+//         body: JSON.stringify(action),
+//       }).then(async (res) => {
+//         if (!res.ok) {
+//           throw new Error(res.status.toString());
+//         } else {
+//           return await res.json();
+//         }
+//       });
+
+//       return data;
+//     } catch (err) {
+//       return rejectWithValue(err);
+//     }
+//   }
+// );

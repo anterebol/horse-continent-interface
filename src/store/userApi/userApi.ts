@@ -89,7 +89,6 @@ export const updateUser = createAsyncThunk(
         }
       });
       if (data) {
-        // console.log(data);
         return { ...data, status: 'ok' };
       } else {
         console.log(action);

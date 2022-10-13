@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { ACTIVATE_BUTTON } from '../../constants/classes';
-import { REVIEW_PATH, EVENT_PATH, USER_PATH } from '../../constants/pathes';
+import { REVIEW_PATH, EVENT_PATH, USER_PATH, GALLERY_PATH } from '../../constants/pathes';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import spinner from '../../assets/spinner.gif';
 import './main.css';
@@ -28,6 +28,9 @@ export const Main = () => {
           ) : null}
           <NavLink to={REVIEW_PATH}>
             <button className={ACTIVATE_BUTTON}>Отзывы</button>
+          </NavLink>
+          <NavLink to={GALLERY_PATH}>
+            <button className={ACTIVATE_BUTTON}>Галерея</button>
           </NavLink>
         </div>
       ) : (

@@ -15,7 +15,6 @@ export const UserItem = (props: { user: UserType }) => {
     dispatch(addOperationId(id));
   };
   const updateUser = () => {
-    console.log('x');
     dispatch(openModal(UP_USER_MODAL));
     dispatch(addOperationId(id));
   };

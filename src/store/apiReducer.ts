@@ -5,6 +5,8 @@ import { signIn } from './signApi/signApi';
 import { addUser, getUsers, removeUser, updateUser } from './userApi/userApi';
 import jwtDecode from 'jwt-decode';
 import { mainApi } from './mainApi/mainApi';
+import { addImage, getGallery } from './galleryApi/galleryApi';
+import { LOADER_MODAL } from '../constants/modals';
 
 const removeStorage = () => {
   localStorage.setItem('token', '');
@@ -20,6 +22,7 @@ const apiState = {
   reqBody: {},
   events: [] as EventType[],
   users: [] as UserType[],
+  gallery: [] as Array<{ id: string; src: string }>,
   operationId: '',
 };
 
@@ -57,7 +60,6 @@ const apiReducer = createSlice({
       state.loaded = false;
     },
     [mainApi.rejected.type]: (state) => {
-      console.log('sss');
       state.token = '';
       localStorage.setItem('token', '');
       state.loaded = true;
@@ -81,8 +83,8 @@ const apiReducer = createSlice({
       state.loaded = true;
     },
     [getUsers.rejected.type]: (state) => {
-      state.loaded = true;
-      removeStorage();
+      // state.loaded = true;
+      // removeStorage();
     },
     [addUser.fulfilled.type]: (state, action) => {
       state.users.push(action.payload);
@@ -105,8 +107,7 @@ const apiReducer = createSlice({
       state.modal = '';
       state.loaded = true;
     },
-    [updateUser.rejected.type]: (state, action) => {
-      console.log(action.payload);
+    [updateUser.rejected.type]: (state) => {
       state.loaded = true;
       state.token = '';
       removeStorage();
@@ -141,7 +142,7 @@ const apiReducer = createSlice({
       state.loaded = false;
     },
     [getEvents.fulfilled.type]: (state, action) => {
-      console.log(action);
+      action.payload.sort((a, b) => a.order - b.order);
       state.events = [...action.payload];
       state.loaded = true;
     },
@@ -154,7 +155,6 @@ const apiReducer = createSlice({
       state.loaded = true;
     },
     [addEvent.fulfilled.type]: (state, action) => {
-      // console.log(action.payload);
       state.events.push(action.payload);
       state.loaded = true;
     },
@@ -199,6 +199,31 @@ const apiReducer = createSlice({
       state.token = '';
       removeStorage();
       state.loaded = true;
+    },
+    [getGallery.fulfilled.type]: (state, action) => {
+      console.log(action.payload);
+      state.gallery = [...action.payload];
+      state.loaded = true;
+    },
+    [getGallery.pending.type]: (state) => {
+      state.loaded = false;
+    },
+    [getGallery.rejected.type]: (state) => {
+      // state.token = '';
+      // removeStorage();
+      // state.loaded = true;
+    },
+    [addImage.fulfilled.type]: (state, action) => {
+      state.gallery.unshift(action.payload);
+      state.loaded = true;
+    },
+    [addImage.pending.type]: (state) => {
+      state.loaded = false;
+    },
+    [addImage.rejected.type]: (state) => {
+      // state.token = '';
+      // removeStorage();
+      // state.loaded = true;
     },
   },
 });

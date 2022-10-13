@@ -8,8 +8,16 @@ import { useAppDispatch } from './hooks/hooks';
 import { addToken } from './store/apiReducer';
 import { useEffect } from 'react';
 import { Main } from './pages/Main/Main';
-import { MAIN_PATH, EVENT_PATH, REVIEW_PATH, USER_PATH, AUTH_PATH } from './constants/pathes';
+import {
+  MAIN_PATH,
+  EVENT_PATH,
+  REVIEW_PATH,
+  USER_PATH,
+  AUTH_PATH,
+  GALLERY_PATH,
+} from './constants/pathes';
 import { Users } from './pages/Users/Users';
+import { Gallery } from './pages/Gallery/Gallery';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -48,6 +56,14 @@ const App = () => {
         element={
           <Private>
             <Users />
+          </Private>
+        }
+      />
+      <Route
+        path={GALLERY_PATH}
+        element={
+          <Private>
+            <Gallery />
           </Private>
         }
       />

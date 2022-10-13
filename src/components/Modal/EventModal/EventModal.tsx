@@ -18,7 +18,7 @@ export const EventModal = () => {
         date={eventItem.date}
         idFor={idFor}
       />
-      <Button value={'Изменить'} cls={['update']} idFor={idFor} type={'submit'} func={() => {}} />
+      <Button value={'Изменить'} cls={['update']} idFor={idFor} type={'submit'} />
     </div>
   );
 };

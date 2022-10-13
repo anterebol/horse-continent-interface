@@ -6,6 +6,7 @@ import './modal.css';
 import {
   DEL_EVENT_MODAL,
   DEL_USER_MODAL,
+  LOADER_MODAL,
   UP_EVENT_MODAL,
   UP_USER_MODAL,
 } from '../../constants/modals';
@@ -16,6 +17,7 @@ import { removeEvent } from '../../store/eventApi/eventApi';
 import { Button } from '../Button/Button';
 import { FormEvent } from '../Forms/FormEvent/FormEvent';
 import { EventModal } from './EventModal/EventModal';
+import { Preloader } from '../Preloader/Preloader';
 
 export const Modal = () => {
   const dispatch = useAppDispatch();
@@ -70,29 +72,33 @@ export const Modal = () => {
     closeModal();
   };
   const closeModal = () => {
-    dispatch(removeModal());
+    modal !== LOADER_MODAL ? dispatch(removeModal()) : null;
   };
 
   return (
     <div className={['modal-box', modal ? 'open' : ''].join(' ')} onClick={closeModal}>
       <div className={['modal-back', modal ? 'open' : ''].join(' ')}></div>
-      <div
-        className="modal-body"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <div className="close">
-          <img
-            src={!hovered ? close : closeOrange}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            onClick={() => closeModal()}
-            alt=""
-          />
+      {modal !== LOADER_MODAL ? (
+        <div
+          className="modal-body"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <div className="close">
+            <img
+              src={!hovered ? close : closeOrange}
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              onClick={() => closeModal()}
+              alt=""
+            />
+          </div>
+          {checkModal(modal)}
         </div>
-        {checkModal(modal)}
-      </div>
+      ) : (
+        <Preloader />
+      )}
     </div>
   );
 };
