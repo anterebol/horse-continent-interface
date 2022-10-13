@@ -15,7 +15,6 @@ import close from '../../assets/close.svg';
 import closeOrange from '../../assets/close-orange.svg';
 import { removeEvent } from '../../store/eventApi/eventApi';
 import { Button } from '../Button/Button';
-import { FormEvent } from '../Forms/FormEvent/FormEvent';
 import { EventModal } from './EventModal/EventModal';
 import { Preloader } from '../Preloader/Preloader';
 

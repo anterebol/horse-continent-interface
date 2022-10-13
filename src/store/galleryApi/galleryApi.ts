@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { headers } from '../../constants/headers';
-import { GET, POST } from '../../constants/methods';
+import { DELETE, GET, POST } from '../../constants/methods';
 import { GALLERY_URL } from '../../constants/pathes';
+import { createUrl } from '../../utils/createUrl';
 
 export const getGallery = createAsyncThunk('getGallery', async (action, { rejectWithValue }) => {
   try {
@@ -23,7 +24,6 @@ export const getGallery = createAsyncThunk('getGallery', async (action, { reject
 });
 
 export const addImage = createAsyncThunk('addImage', async (action, { rejectWithValue }) => {
-  console.log(action);
   try {
     const image = await fetch(GALLERY_URL, {
       method: POST,
@@ -41,3 +41,24 @@ export const addImage = createAsyncThunk('addImage', async (action, { rejectWith
     return rejectWithValue(err);
   }
 });
+export const removeGalleryImage = createAsyncThunk(
+  'removeImage',
+  async (action: { id: string }, { rejectWithValue }) => {
+    const { id } = action;
+    try {
+      await fetch(createUrl(GALLERY_URL, id), {
+        method: DELETE,
+      }).then(async (res) => {
+        if (!res.ok) {
+          throw new Error(res.status.toString());
+        } else {
+          // return await res.json();
+        }
+      });
+      console.log(id);
+      return id;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

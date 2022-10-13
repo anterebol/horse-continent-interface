@@ -10,7 +10,7 @@ export const Gallery = () => {
   const navigate = useNavigate();
   return (
     <div className="gallery-page">
-      <h2 className="h2-event">Добавить изоюражение </h2>
+      <h2 className="h2-event">Добавить изображение </h2>
       <Button value={'Назад'} cls={['back']} func={() => navigate(-1)} />
       <GalleryForm idFor={galleryForIf} clsInput={[]} submit={addImage} />
       <Button idFor={galleryForIf} value={'Добавить'} type="submit" cls={['update', 'right-40']} />

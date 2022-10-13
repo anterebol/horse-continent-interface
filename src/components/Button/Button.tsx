@@ -14,7 +14,9 @@ export const Button = (props: {
       form={idFor}
       disabled={disabled}
       className={['btn-user', ...cls].join(' ')}
-      onClick={(e) => func(e)}
+      onClick={(e) => {
+        func ? func(e) : null;
+      }}
     >
       {value}
     </button>

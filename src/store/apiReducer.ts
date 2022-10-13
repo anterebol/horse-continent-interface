@@ -5,7 +5,7 @@ import { signIn } from './signApi/signApi';
 import { addUser, getUsers, removeUser, updateUser } from './userApi/userApi';
 import jwtDecode from 'jwt-decode';
 import { mainApi } from './mainApi/mainApi';
-import { addImage, getGallery } from './galleryApi/galleryApi';
+import { addImage, getGallery, removeGalleryImage } from './galleryApi/galleryApi';
 import { LOADER_MODAL } from '../constants/modals';
 
 const removeStorage = () => {
@@ -221,6 +221,24 @@ const apiReducer = createSlice({
       state.loaded = false;
     },
     [addImage.rejected.type]: (state) => {
+      // state.token = '';
+      // removeStorage();
+      // state.loaded = true;
+    },
+    [removeGalleryImage.fulfilled.type]: (state, action) => {
+      const id = action.payload;
+      if (id) {
+        state.gallery.splice(
+          state.gallery.findIndex((image) => image.id === id),
+          1
+        );
+      }
+      state.loaded = true;
+    },
+    [removeGalleryImage.pending.type]: (state) => {
+      state.loaded = false;
+    },
+    [removeGalleryImage.rejected.type]: (state) => {
       // state.token = '';
       // removeStorage();
       // state.loaded = true;
