@@ -15,9 +15,11 @@ import {
   USER_PATH,
   AUTH_PATH,
   GALLERY_PATH,
+  DEVELOP_PATH,
 } from './constants/pathes';
 import { Users } from './pages/Users/Users';
 import { Gallery } from './pages/Gallery/Gallery';
+import { Developer } from './pages/Developer/Developer';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -67,6 +69,7 @@ const App = () => {
           </Private>
         }
       />
+      <Route path={DEVELOP_PATH} element={<Developer />} />
     </Routes>
   );
 };

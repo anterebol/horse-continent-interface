@@ -1,0 +1,13 @@
+.box-star {
+  width: 25px;
+  height: 25px;
+  padding: 4px;
+  cursor: pointer;
+}
+.box-star:hover {
+  fill: orange;
+}
+.img-star {
+  width: 100%;
+  height: 100%;
+}

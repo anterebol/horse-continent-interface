@@ -48,7 +48,6 @@ export const Login = () => {
             </button>
           </form>
           <NavLink to={DEVELOP_PATH}>
-            <div className="back-dev"></div>
             <p className="develop-link">Связаться с разработчиком</p>
           </NavLink>
         </>

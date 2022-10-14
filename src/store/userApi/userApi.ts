@@ -4,6 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { headers } from '../../constants/headers';
 import { GET, POST } from '../../constants/methods';
 import { USER_URL } from '../../constants/pathes';
+
 export const addUser = createAsyncThunk('add-user', async (action, { rejectWithValue }) => {
   console.log(action, localStorage.getItem('token'));
   try {

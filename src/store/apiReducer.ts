@@ -1,5 +1,5 @@
 import { getEvents, addEvent, removeEvent, updateEvent } from './eventApi/eventApi';
-import { EventType, UserType } from './../types/types';
+import { EventType, ReviewType, UserType } from './../types/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { signIn } from './signApi/signApi';
 import { addUser, getUsers, removeUser, updateUser } from './userApi/userApi';
@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode';
 import { mainApi } from './mainApi/mainApi';
 import { addImage, getGallery, removeGalleryImage } from './galleryApi/galleryApi';
 import { LOADER_MODAL } from '../constants/modals';
+import { getReview } from './reviewApi/reviewApi';
 
 const removeStorage = () => {
   localStorage.setItem('token', '');
@@ -23,6 +24,7 @@ const apiState = {
   events: [] as EventType[],
   users: [] as UserType[],
   gallery: [] as Array<{ id: string; src: string }>,
+  reviews: [] as Array<ReviewType>,
   operationId: '',
 };
 
@@ -239,6 +241,19 @@ const apiReducer = createSlice({
       state.loaded = false;
     },
     [removeGalleryImage.rejected.type]: (state) => {
+      // state.token = '';
+      // removeStorage();
+      // state.loaded = true;
+    },
+    [getReview.fulfilled.type]: (state, action) => {
+      console.log(action.payload);
+      state.reviews = [...action.payload];
+      state.loaded = true;
+    },
+    [getReview.pending.type]: (state) => {
+      state.loaded = false;
+    },
+    [getReview.rejected.type]: (state) => {
       // state.token = '';
       // removeStorage();
       // state.loaded = true;
