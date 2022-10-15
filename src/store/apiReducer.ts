@@ -56,6 +56,7 @@ const apiReducer = createSlice({
       state.modal = '';
     },
     chengeReviewPage: (state, action) => {
+      console.log(action);
       state.reviewPage = action.payload;
     },
   },

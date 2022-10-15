@@ -11,7 +11,7 @@ export const Events = () => {
   const navigate = useNavigate();
   return (
     <div style={{ width: '100%', paddingBottom: 50 }}>
-      <h2 className="h2-event">Добавить мероприятие </h2>
+      <h2 className="add-title">Добавить мероприятие </h2>
       <Button value={'Назад'} cls={['back']} func={() => navigate(-1)} />
       <FormEvent idFor={'create-event'} submit={addEvent} clsInput={['add-event']} />
       <div className="create-button-box">

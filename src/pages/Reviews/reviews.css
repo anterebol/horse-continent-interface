@@ -1,0 +1,46 @@
+.review-not, .review-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.nav-review {
+  margin: 0 auto;
+  /* position: relative; */
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin-top: 30px;
+}
+.nav-review-link {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to left, orange 1%, rgb(220, 153, 66));
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: white !important;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: ease .3s;
+}
+.nav-review-link > img {
+  width: 100%;
+  height: 100%;
+}
+.nav-review-link:disabled {
+  background: rgb(239, 193, 109);
+  cursor: default;
+  box-shadow: none !important;
+}
+.nav-review-link:hover {
+  box-shadow: inset 0px 0px 4px 2px white;
+}
+.nav-review-link.active {
+  background: rgb(239, 193, 109);
+  cursor: default;
+  box-shadow: none !important;
+}
