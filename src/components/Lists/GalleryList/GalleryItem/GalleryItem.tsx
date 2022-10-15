@@ -5,6 +5,7 @@ import close from '../../../../assets/close-white.svg';
 import closeOrange from '../../../../assets/close-orange.svg';
 import { useAppDispatch } from '../../../../hooks/hooks';
 import { removeGalleryImage } from '../../../../store/galleryApi/galleryApi';
+import { DeleteBtn } from '../../../Button/DeleteBtn';
 
 export const Image = (props: { id: string; src: string }) => {
   const dispatch = useAppDispatch();
@@ -35,14 +36,7 @@ export const Image = (props: { id: string; src: string }) => {
         setClicked(!clicked);
       }}
     >
-      <button className="gallery-btn-delete" onClick={() => removeImage()}>
-        <img
-          src={!hovered ? close : closeOrange}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          alt=""
-        />
-      </button>
+      <DeleteBtn callback={removeImage} />
       {loaded ? (
         <img src={src} alt="gallery-image" className="gallery-img" />
       ) : (

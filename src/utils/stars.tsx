@@ -1,4 +1,4 @@
-import { Star } from '../components/Star/Star';
+import { Star } from '../components/Star/star';
 
 export const addStars = (n: number, isFormStar = false) => {
   const stars = [] as Array<JSX.Element>;

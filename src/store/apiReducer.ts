@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 import { mainApi } from './mainApi/mainApi';
 import { addImage, getGallery, removeGalleryImage } from './galleryApi/galleryApi';
 import { LOADER_MODAL } from '../constants/modals';
-import { getReview } from './reviewApi/reviewApi';
+import { getReview, getReviewPages, removeReview } from './reviewApi/reviewApi';
 
 const removeStorage = () => {
   localStorage.setItem('token', '');
@@ -25,6 +25,8 @@ const apiState = {
   users: [] as UserType[],
   gallery: [] as Array<{ id: string; src: string }>,
   reviews: [] as Array<ReviewType>,
+  reviewPage: '1',
+  maxCountReviewPages: '1',
   operationId: '',
 };
 
@@ -52,6 +54,9 @@ const apiReducer = createSlice({
       state.pass = '';
       state.operationId = '';
       state.modal = '';
+    },
+    chengeReviewPage: (state, action) => {
+      state.reviewPage = action.payload;
     },
   },
   extraReducers: {
@@ -246,7 +251,7 @@ const apiReducer = createSlice({
       // state.loaded = true;
     },
     [getReview.fulfilled.type]: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.reviews = [...action.payload];
       state.loaded = true;
     },
@@ -258,9 +263,45 @@ const apiReducer = createSlice({
       // removeStorage();
       // state.loaded = true;
     },
+    [getReviewPages.fulfilled.type]: (state, action) => {
+      console.log(action.payload);
+      state.maxCountReviewPages = action.payload;
+    },
+    [getReviewPages.pending.type]: (state) => {
+      // state.loaded = false;
+    },
+    [getReviewPages.rejected.type]: (state) => {
+      // state.token = '';
+      // removeStorage();
+      // state.loaded = true;
+    },
+    [removeReview.fulfilled.type]: (state, action) => {
+      if (action.payload) {
+        state.reviews.splice(
+          state.reviews.findIndex((review) => review.id === action.payload),
+          1
+        );
+      }
+      // state.loaded = true;
+    },
+    [removeReview.pending.type]: (state) => {
+      // state.loaded = false;
+    },
+    [removeReview.rejected.type]: (state) => {
+      // state.token = '';
+      // removeStorage();
+      // state.loaded = true;
+    },
   },
 });
 
 export default apiReducer.reducer;
-export const { addToken, openModal, updatePass, sendReqest, addOperationId, removeModal } =
-  apiReducer.actions;
+export const {
+  addToken,
+  openModal,
+  updatePass,
+  sendReqest,
+  addOperationId,
+  removeModal,
+  chengeReviewPage,
+} = apiReducer.actions;

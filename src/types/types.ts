@@ -22,6 +22,7 @@ export type EventType = {
 export type ReviewType = {
   id: string;
   name: string;
-  countStars: number;
+  stars: number;
   description: string;
+  date: string;
 };

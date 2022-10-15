@@ -9,8 +9,8 @@ import { mainApi } from '../../store/mainApi/mainApi';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
-  const { userData } = useAppSelector((state) => state.apiReducer);
-  const { loaded } = useAppSelector((state) => state.apiReducer);
+  const { userData, loaded, reviewPage } = useAppSelector((state) => state.apiReducer);
+
   useEffect(() => {
     dispatch(mainApi());
   }, []);
@@ -26,7 +26,7 @@ export const Main = () => {
               <button className={ACTIVATE_BUTTON}>Пользователи</button>
             </NavLink>
           ) : null}
-          <NavLink to={REVIEW_PATH}>
+          <NavLink to={REVIEW_PATH + '/' + reviewPage}>
             <button className={ACTIVATE_BUTTON}>Отзывы</button>
           </NavLink>
           <NavLink to={GALLERY_PATH}>

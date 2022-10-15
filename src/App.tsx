@@ -46,7 +46,7 @@ const App = () => {
         }
       />
       <Route
-        path={REVIEW_PATH}
+        path={REVIEW_PATH + '/:page'}
         element={
           <Private>
             <Reviews />
