@@ -1,14 +1,11 @@
 .event-box {
-  /* background: #ffffff; */
   width: 90%;
-  
   margin: 10px auto;
   list-style: none;
   background: none;
   position: relative;
   padding: 10px;
   min-height: 250px;
-  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 .event-back {
   position: absolute;
@@ -25,7 +22,6 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* height: 100px; */
 }
 .box-event-inside {
   display: flex;
@@ -75,7 +71,6 @@
   text-align: center;
 }
 .event-buttons {
-  /* position: absolute; */
   display: flex;
   flex-wrap: wrap;
 }

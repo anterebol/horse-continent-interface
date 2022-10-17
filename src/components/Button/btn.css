@@ -17,7 +17,6 @@
   box-shadow: none !important;
 }
 .btn-user:hover {
-  /* transform: scale(.95); */
   box-shadow: 0 0 5px black;
   transition: ease 1s;
 }
@@ -25,6 +24,12 @@
   transform: scale(.9);
   box-shadow: 0 0 10px black;
   transition: ease .3s;
+}
+.comment-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: -webkit-radial-gradient(50%, rgb(82, 188, 250), rgb(25, 137, 234));
 }
 .del {
   background: -webkit-radial-gradient(50%, rgb(248, 161, 161), rgb(237, 50, 50));
@@ -45,10 +50,20 @@
 .right-40 {
   position: absolute;
   right: 40px;
-  /* bottom: 50px; */
+}
+.exit {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: -webkit-radial-gradient(50%, rgb(241, 162, 149), rgb(239, 90, 26));
 }
 @media (max-width: 500px) {
   .back {
-    position: static;
+    position: relative;
+    left: 5px;
+    top: 5px;
+  }
+  .exit {
+
   }
 }

@@ -16,7 +16,6 @@ export const getGallery = createAsyncThunk('getGallery', async (action, { reject
         return await res.json();
       }
     });
-    console.log(gallery);
     return gallery;
   } catch (err) {
     return rejectWithValue(err);
@@ -41,6 +40,7 @@ export const addImage = createAsyncThunk('addImage', async (action, { rejectWith
     return rejectWithValue(err);
   }
 });
+
 export const removeGalleryImage = createAsyncThunk(
   'removeImage',
   async (action: { id: string }, { rejectWithValue }) => {
@@ -51,11 +51,8 @@ export const removeGalleryImage = createAsyncThunk(
       }).then(async (res) => {
         if (!res.ok) {
           throw new Error(res.status.toString());
-        } else {
-          // return await res.json();
         }
       });
-      console.log(id);
       return id;
     } catch (err) {
       return rejectWithValue(err);

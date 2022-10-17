@@ -6,12 +6,14 @@ export const GalleryForm = (props: { idFor: string; clsInput: Array<string>; sub
   const dispatch = useAppDispatch();
   const { idFor, clsInput, submit } = props;
   const [img, setImg] = useState('');
+
   const submitForm = async (e) => {
     e.preventDefault();
     await dispatch(submit({ src: img }));
     e.target.reset();
     setImg('');
   };
+
   return (
     <form id={idFor} className={['event-form', ...clsInput].join(' ')} onSubmit={submitForm}>
       <div className="form-item-box">

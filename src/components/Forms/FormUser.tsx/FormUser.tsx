@@ -16,7 +16,7 @@ export const FormUser = (props: {
   submit?: any;
 }) => {
   const dispatch = useAppDispatch();
-  const { token, modal } = useAppSelector((state) => state.apiReducer);
+  const { modal } = useAppSelector((state) => state.apiReducer);
   const { clsInput, naming, role, idFor, submit } = props;
   const [login, setLogin] = useState(props.login || '');
   const [name, setName] = useState(props.name || '');
@@ -71,26 +71,6 @@ export const FormUser = (props: {
           naming={naming}
         />
         {naming ? <Paragraph option={'Role'} value={role || ''} /> : null}
-        {/* <div className={[BOX_INPUT].join(' ')}>
-          <div className={clsSelect.join(' ')}></div>
-          <select defaultValue="role" className={[FIELD_INPUT, 'role-select'].join(' ')}>
-            <option selected={true} disabled>
-              Role
-            </option>
-            <option value="admin" unselectable="off" title="Администратор">
-              Admin
-            </option>
-            <option title="Владелец" value="owner">
-              Owner
-            </option>
-          </select>
-        </div> */}
-        {/* <button
-          className={clsButton.join(' ')}
-          disabled={login === '' || password === '' || name === ''}
-        >
-          {btnName}
-        </button> */}
       </form>
     </>
   );

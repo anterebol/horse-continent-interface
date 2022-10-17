@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import './galleryItem.css';
 import spinner from '../../../../assets/spinner.gif';
-import close from '../../../../assets/close-white.svg';
-import closeOrange from '../../../../assets/close-orange.svg';
 import { useAppDispatch } from '../../../../hooks/hooks';
 import { removeGalleryImage } from '../../../../store/galleryApi/galleryApi';
 import { DeleteBtn } from '../../../Button/DeleteBtn';
@@ -12,7 +10,6 @@ export const Image = (props: { id: string; src: string }) => {
   const { id, src } = props;
   const [loaded, setLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {

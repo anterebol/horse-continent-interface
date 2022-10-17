@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
 import { ReviewList } from '../../components/Lists/ReviewList/ReviewList';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { chengeReviewPage } from '../../store/apiReducer';
+import { chengeReviewPage, closeApp } from '../../store/apiReducer';
 import { getReview, getReviewPages } from '../../store/reviewApi/reviewApi';
 import './reviews.css';
 import left from '../../assets/left.svg';
@@ -24,6 +24,7 @@ export const Reviews = () => {
     dispatch(getReviewPages());
     dispatch(getReview({ page: page || '1' }));
   }, [page]);
+
   useEffect(() => {
     if (reviews.length === 0 && Number(page) >= 2) {
       chengePage(Number(page) - 1);
@@ -40,6 +41,7 @@ export const Reviews = () => {
     <div style={{ width: '100%', paddingBottom: 50, position: 'relative', minHeight: 300 }}>
       <h2 className="add-title">Отзывы</h2>
       <Button value={'Назад'} cls={['back']} func={() => navigate('/')} />
+      <Button value={'Выход'} cls={['exit']} func={() => dispatch(closeApp())} />
       {loaded ? (
         reviews.length > 0 ? (
           <>
@@ -84,7 +86,6 @@ export const Reviews = () => {
         )
       ) : (
         <img className="review-spinner" src={spinner} alt="preloader" />
-        // <h2 className="review-not">Отзывов пока нет</h2>
       )}
     </div>
   );

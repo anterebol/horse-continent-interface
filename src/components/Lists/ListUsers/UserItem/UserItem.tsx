@@ -25,7 +25,6 @@ export const UserItem = (props: { user: UserType }) => {
       <div className="user-intarface">
         <div className="user-prop">
           <FormUser
-            // submit={updateUser}
             clsInput={['user-input']}
             name={name}
             password={password}

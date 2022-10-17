@@ -52,8 +52,6 @@ export const removeReview = createAsyncThunk(
       }).then(async (res) => {
         if (!res.ok) {
           throw new Error(res.status.toString());
-        } else {
-          // return await res.json();
         }
       });
       return id;

@@ -1,6 +1,6 @@
 import { createUrl } from '../utils/createUrl';
-// export const URL = 'https://horse-continent.herokuapp.com';
-export const URL = 'http://localhost:4000';
+export const URL = 'https://horse-continent.herokuapp.com';
+// export const URL = 'http://localhost:4000';
 
 export const AUTH_PATH = '/sign-in';
 export const MAIN_PATH = '';

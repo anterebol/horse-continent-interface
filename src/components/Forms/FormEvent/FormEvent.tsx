@@ -29,6 +29,7 @@ export const FormEvent = (props: {
   const [visible, setVisible] = useState(props.visible || false);
   const [date, setDate] = useState(props.date || '');
   const [order, setOrder] = useState(props.order || 0);
+
   const submitForm = async (e) => {
     e.preventDefault();
     if (modal && !submit) {

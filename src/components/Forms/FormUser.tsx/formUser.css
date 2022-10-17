@@ -24,11 +24,8 @@
 }
 .add-btn {
   margin-left: 30px;
-  /* right: 30px; */
-  /* height: 50px; */
 }
 .box-input.add-user {
-  /* margin: 0 auto; */
   width: 30%;
   text-align: center;
   right: 30px;
@@ -40,14 +37,10 @@
   width: 150px;
   color: white;
   left: 15px;
-  /* position: relative;
-  top: -40px;
-  background: ; */
 }
 option {
   background: rgb(215, 214, 214);
   opacity: .4;
-
   border-radius: 10px !important;
   border: none !important;
   color: rgb(14, 14, 14);

@@ -7,6 +7,7 @@ import './reviewItem.css';
 import { DeleteBtn } from '../../../Button/DeleteBtn';
 import { useAppDispatch } from '../../../../hooks/hooks';
 import { removeReview } from '../../../../store/reviewApi/reviewApi';
+import { Button } from '../../../Button/Button';
 
 export const ReviewItem = (props: { review: ReviewType }) => {
   const dispatch = useAppDispatch();
@@ -37,6 +38,7 @@ export const ReviewItem = (props: { review: ReviewType }) => {
       <p className="review-name">{name}</p>
       <p className={['review-description', fullReview ? 'full' : ''].join(' ')}>{description}</p>
       <img src={down} onClick={changeFull} className="open-review" />
+      <Button value={'Оставить комментарий'} cls={['comment-btn']} />
     </div>
   );
 };

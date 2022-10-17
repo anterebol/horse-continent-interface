@@ -6,7 +6,6 @@ import { addUser, getUsers, removeUser, updateUser } from './userApi/userApi';
 import jwtDecode from 'jwt-decode';
 import { mainApi } from './mainApi/mainApi';
 import { addImage, getGallery, removeGalleryImage } from './galleryApi/galleryApi';
-import { LOADER_MODAL } from '../constants/modals';
 import { getReview, getReviewPages, removeReview } from './reviewApi/reviewApi';
 
 const removeStorage = () => {
@@ -56,8 +55,11 @@ const apiReducer = createSlice({
       state.modal = '';
     },
     chengeReviewPage: (state, action) => {
-      console.log(action);
       state.reviewPage = action.payload;
+    },
+    closeApp: (state) => {
+      state.token = '';
+      removeStorage();
     },
   },
   extraReducers: {
@@ -69,7 +71,7 @@ const apiReducer = createSlice({
     },
     [mainApi.rejected.type]: (state) => {
       state.token = '';
-      localStorage.setItem('token', '');
+      removeStorage();
       state.loaded = true;
     },
     [signIn.fulfilled.type]: (state, action) => {
@@ -82,24 +84,31 @@ const apiReducer = createSlice({
       localStorage.setItem('role', userData.role);
       state.loaded = true;
     },
+    [signIn.pending.type]: (state) => {
+      state.loaded = false;
+    },
     [signIn.rejected.type]: (state) => {
-      state.loaded = true;
+      state.token = '';
       removeStorage();
+      state.loaded = true;
     },
     [getUsers.fulfilled.type]: (state, action: { payload: UserType[] }) => {
       state.users = [...action.payload];
       state.loaded = true;
     },
+    [getUsers.pending.type]: (state) => {
+      state.loaded = false;
+    },
     [getUsers.rejected.type]: (state) => {
-      // state.loaded = true;
-      // removeStorage();
+      state.token = '';
+      removeStorage();
+      state.loaded = true;
     },
     [addUser.fulfilled.type]: (state, action) => {
       state.users.push(action.payload);
-      state.loaded = true;
     },
     [addUser.rejected.type]: (state) => {
-      state.loaded = true;
+      state.token = '';
       removeStorage();
     },
     [updateUser.fulfilled.type]: (state, action) => {
@@ -113,10 +122,8 @@ const apiReducer = createSlice({
       state.pass = '';
       state.operationId = '';
       state.modal = '';
-      state.loaded = true;
     },
     [updateUser.rejected.type]: (state) => {
-      state.loaded = true;
       state.token = '';
       removeStorage();
       state.reqBody = {};
@@ -134,20 +141,12 @@ const apiReducer = createSlice({
         state.pass = '';
         state.operationId = '';
         state.modal = '';
-        state.loaded = true;
       }
     },
     [removeUser.rejected.type]: (state) => {
-      state.loaded = true;
       localStorage.setItem('token', '');
       state.token = '';
       state.operationId = '';
-    },
-    [getUsers.pending.type ||
-    signIn.pending.type ||
-    addUser.pending.type ||
-    removeUser.pending.type]: (state) => {
-      state.loaded = false;
     },
     [getEvents.fulfilled.type]: (state, action) => {
       action.payload.sort((a, b) => a.order - b.order);
@@ -164,52 +163,34 @@ const apiReducer = createSlice({
     },
     [addEvent.fulfilled.type]: (state, action) => {
       state.events.push(action.payload);
-      state.loaded = true;
-    },
-    [addEvent.pending.type]: (state) => {
-      state.loaded = false;
     },
     [addEvent.rejected.type]: (state) => {
       state.token = '';
       removeStorage();
-      state.loaded = true;
     },
     [updateEvent.fulfilled.type]: (state, action) => {
       if (action.payload.id) {
         const index = state.events.findIndex((event) => event.id === action.payload.id);
         state.events[index] = { ...action.payload };
       }
-      state.loaded = true;
       state.operationId = '';
       state.modal = '';
-    },
-    [updateEvent.pending.type]: (state) => {
-      state.loaded = false;
     },
     [updateEvent.rejected.type]: (state) => {
       state.token = '';
       removeStorage();
-      state.loaded = true;
     },
     [removeEvent.fulfilled.type]: (state, action) => {
-      if (action.payload.id) {
-        state.events.splice(
-          state.events.findIndex((event) => event.id === action.payload.id),
-          1
-        );
-      }
-      state.loaded = true;
-    },
-    [removeEvent.pending.type]: (state) => {
-      state.loaded = false;
+      state.events.splice(
+        state.events.findIndex((event) => event.id === action.payload.id),
+        1
+      );
     },
     [removeEvent.rejected.type]: (state) => {
       state.token = '';
       removeStorage();
-      state.loaded = true;
     },
     [getGallery.fulfilled.type]: (state, action) => {
-      console.log(action.payload);
       state.gallery = [...action.payload];
       state.loaded = true;
     },
@@ -217,42 +198,29 @@ const apiReducer = createSlice({
       state.loaded = false;
     },
     [getGallery.rejected.type]: (state) => {
-      // state.token = '';
-      // removeStorage();
-      // state.loaded = true;
+      state.token = '';
+      removeStorage();
+      state.loaded = true;
     },
     [addImage.fulfilled.type]: (state, action) => {
       state.gallery.unshift(action.payload);
-      state.loaded = true;
-    },
-    [addImage.pending.type]: (state) => {
-      state.loaded = false;
     },
     [addImage.rejected.type]: (state) => {
-      // state.token = '';
-      // removeStorage();
-      // state.loaded = true;
+      state.token = '';
+      removeStorage();
     },
     [removeGalleryImage.fulfilled.type]: (state, action) => {
       const id = action.payload;
-      if (id) {
-        state.gallery.splice(
-          state.gallery.findIndex((image) => image.id === id),
-          1
-        );
-      }
-      state.loaded = true;
-    },
-    [removeGalleryImage.pending.type]: (state) => {
-      state.loaded = false;
+      state.gallery.splice(
+        state.gallery.findIndex((image) => image.id === id),
+        1
+      );
     },
     [removeGalleryImage.rejected.type]: (state) => {
-      // state.token = '';
-      // removeStorage();
-      // state.loaded = true;
+      state.token = '';
+      removeStorage();
     },
     [getReview.fulfilled.type]: (state, action) => {
-      // console.log(action.payload);
       state.reviews = [...action.payload];
       state.loaded = true;
     },
@@ -260,38 +228,26 @@ const apiReducer = createSlice({
       state.loaded = false;
     },
     [getReview.rejected.type]: (state) => {
-      // state.token = '';
-      // removeStorage();
-      // state.loaded = true;
+      state.token = '';
+      removeStorage();
+      state.loaded = true;
     },
     [getReviewPages.fulfilled.type]: (state, action) => {
-      console.log(action.payload);
       state.maxCountReviewPages = action.payload;
     },
-    [getReviewPages.pending.type]: (state) => {
-      // state.loaded = false;
-    },
     [getReviewPages.rejected.type]: (state) => {
-      // state.token = '';
-      // removeStorage();
-      // state.loaded = true;
+      state.token = '';
+      removeStorage();
     },
     [removeReview.fulfilled.type]: (state, action) => {
-      if (action.payload) {
-        state.reviews.splice(
-          state.reviews.findIndex((review) => review.id === action.payload),
-          1
-        );
-      }
-      // state.loaded = true;
-    },
-    [removeReview.pending.type]: (state) => {
-      // state.loaded = false;
+      state.reviews.splice(
+        state.reviews.findIndex((review) => review.id === action.payload),
+        1
+      );
     },
     [removeReview.rejected.type]: (state) => {
-      // state.token = '';
-      // removeStorage();
-      // state.loaded = true;
+      state.token = '';
+      removeStorage();
     },
   },
 });
@@ -305,4 +261,5 @@ export const {
   addOperationId,
   removeModal,
   chengeReviewPage,
+  closeApp,
 } = apiReducer.actions;

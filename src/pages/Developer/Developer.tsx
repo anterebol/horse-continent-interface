@@ -1,10 +1,9 @@
-import my from '../../assets/my.jpg';
 import inst from '../../assets/contacts/instagram.svg';
 import telegram from '../../assets/contacts/telegram.svg';
 import git from '../../assets/contacts/github.svg';
 import vk from '../../assets/contacts/vk.svg';
 import './developer.css';
-import { AUTH_PATH, MAIN_PATH } from '../../constants/pathes';
+import { AUTH_PATH } from '../../constants/pathes';
 import { NavLink } from 'react-router-dom';
 
 export const Developer = () => {

@@ -2,13 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
 import { FormEvent } from '../../components/Forms/FormEvent/FormEvent';
 import { EventList } from '../../components/Lists/EventList/EventList';
-import { useAppDispatch } from '../../hooks/hooks';
 import { addEvent } from '../../store/eventApi/eventApi';
 import './events-page.css';
 
 export const Events = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   return (
     <div style={{ width: '100%', paddingBottom: 50 }}>
       <h2 className="add-title">Добавить мероприятие </h2>
